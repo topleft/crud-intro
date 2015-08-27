@@ -19,7 +19,7 @@ router.get('/superheros', function(req, res, next) {
 router.post('/superheros', function(req, res) {
   new Superhero({name: req.body.name})
   .save(function(err, superhero){
-  res.redirect('api/superheros');
+  res.redirect('/api/superheros');
   })
 });
 
