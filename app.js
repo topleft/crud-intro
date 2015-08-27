@@ -1,3 +1,17 @@
+require('./database');
+console.log(require('./database'))
+// var mongoose = require('mongoose');
+// var Schema   = mongoose.Schema;
+
+// var Superhero = new Schema(
+//   {name : String}
+// );
+
+// mongoose.model('superheros', Superhero);
+
+// mongoose.connect('mongodb://localhost/node-superhero');
+
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -8,12 +22,13 @@ var swig = require("swig");
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api')
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
+
 var swig = new swig.Swig();
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
@@ -29,6 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
